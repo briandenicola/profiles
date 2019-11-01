@@ -3,12 +3,11 @@ Import-Module (Join-PATH $ENV:SCRIPTS_HOME "Module\Standard_Functions.psm1") -Fo
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$MaximumHistoryCount=1024
-$ENV:EDITOR = "C:\Program Files (x86)\Microsoft VS Code\code.exe"
+$MaximumHistoryCount=4096
+$ENV:EDITOR = Get-ExecutablePath -processName "code.exe"
 
 New-Alias -name gh    -value Get-History 
 New-Alias -name i     -Value Invoke-History
-New-Alias -name ed    -Value $env:EDITOR
 New-Alias -Name code  -Value $env:EDITOR
 New-Alias -Name sudo  -Value Start-ElevatedConsole
 
@@ -62,7 +61,7 @@ Set-Alias -Name vpn -Value Get-VPNUnlimitedPassword
 
 function Get-Profile
 {
-	ed $profile
+	&$env:editor $profile
 }
 
 function Edit-HostFile
