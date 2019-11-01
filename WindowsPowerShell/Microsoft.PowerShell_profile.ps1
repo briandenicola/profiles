@@ -1,5 +1,5 @@
-. (Join-PATH $ENV:SCRIPTS_HOME "Libraries\Standard_Functions.ps1")
-Import-Module (Join-PATH $ENV:SCRIPTS_HOME "Libraries\Standard_Functions.psm1") -Force
+#. (Join-PATH $ENV:SCRIPTS_HOME "Libraries\Standard_Functions.ps1")
+Import-Module (Join-PATH $ENV:SCRIPTS_HOME "Module\Standard_Functions.psm1") -Force
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
