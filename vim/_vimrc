@@ -1,0 +1,22 @@
+source $VIMRUNTIME/defaults.vim
+
+set nowrap
+set nobackup
+set nowb
+set noswapfile
+set history=500
+set ruler
+set hlsearch
+set smartcase
+set showmatch 
+set background=dark
+set shiftwidth=4
+set tabstop=4
+set lbr
+set tw=500
+set number
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
