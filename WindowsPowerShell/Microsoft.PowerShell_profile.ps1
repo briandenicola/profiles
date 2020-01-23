@@ -10,7 +10,7 @@ New-Alias -Name gh    -Value Get-History
 New-Alias -Name i     -Value Invoke-History
 New-Alias -Name code  -Value $env:EDITOR
 New-Alias -Name sudo  -Value Start-ElevatedConsole
-New-Alias -Name top   -Value (Join-PATH $ENV:SCRIPTS_HOME "Miscellaneous\Get-CpuLoad.ps1")
+New-Alias -Name top   -Value (Join-PATH $ENV:SCRIPTS_HOME "TaskManager\Get-CpuLoad.ps1")
 
 if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Contacts" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Contacts" )}
 if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "onecoremsvsmon" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "onecoremsvsmon" )}
