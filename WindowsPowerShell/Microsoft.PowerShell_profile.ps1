@@ -1,6 +1,3 @@
-#. (Join-PATH $ENV:SCRIPTS_HOME "Libraries\Standard_Functions.ps1")
-Import-Module (Join-PATH $ENV:SCRIPTS_HOME "bjd.Common.Functions") -Force
-
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $MaximumHistoryCount=4096
