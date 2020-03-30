@@ -1,108 +1,58 @@
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
 $MaximumHistoryCount=4096
-$ENV:EDITOR = Get-ExecutablePath -processName "code.exe"
 
-New-Alias -Name gh    -Value Get-History 
-New-Alias -Name i     -Value Invoke-History
-New-Alias -Name code  -Value $env:EDITOR
-New-Alias -Name sudo  -Value Start-ElevatedConsole
-New-Alias -Name top   -Value (Join-PATH $ENV:SCRIPTS_HOME "TaskManager\Get-CpuLoad.ps1")
+#Aliases moved to bottom after all functions are defined
 
-if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Contacts" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Contacts" )}
-if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "onecoremsvsmon" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "onecoremsvsmon" )}
-if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Searches" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Searches" )}
-if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "source" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "source" )}
-if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Saved Games" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Saved Games" )}
-if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" )}
-if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )}
-if( (Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" ) ) ) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )}
+if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Contacts" )))       { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Contacts" )}
+if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "onecoremsvsmon" ))) { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "onecoremsvsmon" )}
+if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Searches" )))       { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Searches" )}
+if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "source" )))         { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "source" )}
+if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Saved Games" )))    { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Saved Games" )}
+if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" )))     { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" )}
+if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )))      { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )}
+if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )))          { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )}
+
+function Get-DefaultEditor {
+  $code = Get-ExecutablePath -processName "code.exe"
+  if( [string]::IsNullOrEmpty($code) ) {
+    return Get-ExecutablePath -processName "notepad.exe"
+  }
+  return $code  
+}
 
 function Get-AllFilesAndDirectories {
   param (
-    [string] $Path = "."
+    [string] $Path = $PWD.path
   )
-
-  Get-ChildItem -Path . -Attributes "Normal, Hidden" 
+  Get-ChildItemColor -Path $Path -Attributes Hidden
 }
-Set-Alias -Name ll -Value Get-AllFilesAndDirectories
-
-function Invoke-GitReposPull {
-  param( 
-    [Parameter(Mandatory=$true)]
-    [ValidateScript({Test-Path $_})]
-    [string]
-    $ReposRoot 
-  )
-
-  $currentDirectory = $PWD.Path
-  
-  foreach( $repo in (Get-ChildItem -Path $ReposRoot) ) {
-    Write-Verbose -Message ("[{0}] - Setting location to {1} . . ." -f $(Get-date), $repo)
-    Set-Location -Path $repo
-    if( Test-Path -Path '.\.git') {
-      git pull
-    }
-    Set-Location -Path $repo.Parent.FullName
-  }
-
-  Set-location -Path $currentDirectory
-}
-
-function Get-VPNUnlimitedPassword 
-{
-  $secure_password = Get-StoredCredential -Target $ENV:VPN | Select-Object -ExpandProperty Password
-  Get-PlainTextPassword -password (ConvertFrom-SecureString $secure_password) | Set-Clipboard
-  Write-Verbose -Message "Password sent to clip board"
-}
-Set-Alias -Name vpn -Value Get-VPNUnlimitedPassword
 
 function Get-Profile
 {
-	&$env:editor $profile
+	&$ENV:EDITOR $profile
 }
 
 function Edit-HostFile
 {
-	&$env:editor c:\Windows\System32\drivers\etc\hosts
+	&$ENV:EDITOR c:\Windows\System32\drivers\etc\hosts
 }
-Set-Alias -Name hf -Value Edit-HostFile
 
 function Set-Home {
   Set-Location -Path $home
 }
-Set-Alias -Name home -Value Set-Home
 
-Remove-Item alias:cd
 function cd {
     param ( $location ) 
 
     if ( $location -eq '-' ) {
-        pop-location
+        Pop-Location
     }
     else {
-        push-location $pwd.path
-        Set-location $location
+        Push-Location $PWD.path
+        Set-Location $location
     }
 }
 
-function Shorten-Path([string] $path) { 
-  $loc = $path.Replace($HOME, '~') 
-  $loc = $loc -replace '^[^:]+::', '' 
-  return ($loc -replace '\\(\.?)([^\\])[^\\]*(?=\\)', '\$1$2') 
-}
-
-& {
-  for ($i = 0; $i -lt 26; $i++) { 
-      $funcname = ([System.Char]($i + 65)) + ':'
-      $str = "function global:$funcname { set-location $funcname } " 
-      Invoke-Expression $str 
-  }
-}
-
-Remove-Item alias:ls
-Set-Alias ls Get-ChildItemColor
- 
 function Get-ChildItemColor {
   
   $default = $Host.UI.RawUI.ForegroundColor
@@ -147,15 +97,30 @@ function Get-ChildItemColor {
   }
 }
 
-function Get-ChildItemColorHidden {
-  param(
-    [string] $Path = $PWD.path
-  )
-  Get-ChildItemColor -Attributes Hidden -Path $Path
+& {
+  for ($i = 0; $i -lt 26; $i++) { 
+      $funcname = ([System.Char]($i + 65)) + ':'
+      $str = "Function global:$funcname { Set-Location $funcname } " 
+      Invoke-Expression $str 
+  }
 }
-Set-Alias -Name ll -Value Get-ChildItemColorHidden
+ 
+Remove-Item alias:cd
+Remove-Item alias:ls
 
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+$ENV:EDITOR = Get-DefaultEditor
+
+New-Alias -Name gh    -Value Get-History 
+New-Alias -Name i     -Value Invoke-History
+New-Alias -Name code  -Value $ENV:EDITOR
+New-Alias -Name sudo  -Value Start-ElevatedConsole
+New-Alias -Name top   -Value (Join-PATH $ENV:SCRIPTS_HOME "TaskManager\Get-CpuLoad.ps1")
+New-Alias -Name ll    -Value Get-AllFilesAndDirectories
+New-Alias -Name ls    -Value Get-ChildItemColor
+New-Alias -Name hf    -Value Edit-HostFile
+New-Alias -Name home  -Value Set-Home
+
+$ChocolateyProfile = "$ENV:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
     Import-Module "$ChocolateyProfile"
 }
