@@ -12,6 +12,15 @@ if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" ))
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )))      { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )}
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )))          { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )}
 
+function New-APIMHeader {
+  param(
+    [string] $key
+  )
+  $header = @{}
+  $header.Add('Ocp-Apim-Subscription-Key', $Key)
+  return $header
+}
+
 function Get-DefaultEditor {
   $code = Get-ExecutablePath -processName "code.exe"
   if( [string]::IsNullOrEmpty($code) ) {
