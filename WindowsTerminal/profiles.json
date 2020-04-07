@@ -3,10 +3,9 @@
     "globals" : 
     {
         "alwaysShowTabs" : true,
-        //"defaultProfile" : "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
         "defaultProfile" : "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-        "initialCols" : 180,
-        "initialRows" : 50,
+        "initialCols" : 225,
+        "initialRows" : 55,
         "keybindings" : 
         [
             {
@@ -233,7 +232,7 @@
             "backgroundImageOpacity" : 0.40000000596046448,
             "closeOnExit" : true,
             "colorScheme" : "Campbell",
-            "commandline" : "C:\\Program Files\\PowerShell\\6\\pwsh.exe -NoLogo",
+            "commandline" : "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
             "cursorColor" : "#FFFFFF",
             "cursorShape" : "bar",
             //"fontFace" : "Consolas",
@@ -331,6 +330,23 @@
             "snapOnInput" : true,
             "startingDirectory" : "%USERPROFILE%",
             "tabTitle" : "Azure Cloud Shell",
+            "useAcrylic" : true
+        },
+        {
+            "acrylicOpacity" : 0.85000002384185791,
+            "closeOnExit" : false,
+            "colorScheme" : "Solarized Dark",
+            "commandline" : "C:\\Program Files\\PowerShell\\7\\pwsh.exe -i -nologo -noprofile -noexit -command \"Enter-PSSession -HostName minotaur -UserName manager -KeyFile $HOME\\.ssh\\id_rsa",            "cursorColor" : "#FFFFFF",
+            "cursorShape" : "bar",
+            "fontFace" : "Cascadia Code",
+            "fontSize" : 10,
+            "guid" : "{4a3bf36d-cb19-4ab6-b2cc-13a92fdd67b0}",
+            "historySize" : 9001,
+            "name" : "Minotaur",
+            "padding" : "0, 0, 0, 0",
+            "snapOnInput" : true,
+            "startingDirectory" : "%USERPROFILE%",
+            "tabTitle" : "Minotaur",
             "useAcrylic" : true
         },
         {
