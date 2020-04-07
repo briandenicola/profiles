@@ -9,6 +9,26 @@
         "keybindings" : 
         [
             {
+                "command" : {
+                    "action": "splitPane",
+                    "split": "horizontal"
+                },
+                "keys" : 
+                [
+                    "ctrl+shift+h"
+                ]
+            },
+            {
+                "command" : {
+                    "action": "splitPane",
+                    "split": "vertical"
+                },
+                "keys" : 
+                [
+                    "ctrl+shift+v"
+                ]
+            },
+            {
                 "command" : "closePane",
                 "keys" : 
                 [
