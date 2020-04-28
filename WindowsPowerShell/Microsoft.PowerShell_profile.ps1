@@ -1,6 +1,10 @@
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $MaximumHistoryCount=4096
 
+Set-PSReadLineKeyHandler -Key UpArrow   -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineKeyHandler -Key Tab       -Function Complete
+
 #Aliases moved to bottom after all functions are defined
 
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Contacts" )))       { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Contacts" )}
@@ -11,15 +15,6 @@ if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Saved Games" )
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" )))     { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" )}
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )))      { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )}
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )))          { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )}
-
-function New-APIMHeader {
-  param(
-    [string] $key
-  )
-  $header = @{}
-  $header.Add('Ocp-Apim-Subscription-Key', $Key)
-  return $header
-}
 
 function Get-DefaultEditor {
   $code = Get-ExecutablePath -processName "code.exe"
@@ -121,7 +116,7 @@ $ENV:EDITOR = Get-DefaultEditor
 
 New-Alias -Name gh    -Value Get-History 
 New-Alias -Name i     -Value Invoke-History
-New-Alias -Name code  -Value $ENV:EDITOR
+New-Alias -Name ed    -Value $ENV:EDITOR
 New-Alias -Name sudo  -Value Start-ElevatedConsole
 New-Alias -Name top   -Value (Join-PATH $ENV:SCRIPTS_HOME "TaskManager\Get-CpuLoad.ps1")
 New-Alias -Name ll    -Value Get-AllFilesAndDirectories
