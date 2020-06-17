@@ -1,9 +1,12 @@
+Import-Module -Name bjd.Common.Functions
+
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $MaximumHistoryCount=4096
 
 Set-PSReadLineKeyHandler -Key UpArrow   -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Key Tab       -Function Completedules
+Set-PSReadLineKeyHandler -Key Tab       -Function TabCompleteNext
+#Set-PSReadLineKeyHandler -Key Tab       -Function Completedules
 
 #Aliases moved to bottom after all functions are defined
 
@@ -16,13 +19,34 @@ if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" ))
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )))      { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )}
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )))          { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )}
 
-function New-APIMHeader {
-  param(
-    [string] $key
+function prompt
+{
+  if(Get-IsAdminConsole) {
+    $Role = "(Admin)"
+  } 
+  else {
+    $Role = ""
+  }
+
+  $prompt = "[{0}] {4} {1}@{2} | {3}>" -f (Get-Date).Tostring("HH:mm:ss"), $ENV:USERNAME, $ENV:COMPUTERNAME, $PWD.Path, $Role
+  Write-Host $prompt -NoNewline -ForegroundColor Gray
+  return " "
+}
+
+function Update-MyModules {
+  $modules = @(
+    "bjd.Common.Functions",
+    "bjd.Azure.Functions"
   )
-  $header = @{}
-  $header.Add('Ocp-Apim-Subscription-Key', $Key)
-  return $header
+
+  $creds = New-PSCredentials -UserName $ENV:USEREMAIL -Password (devops)
+
+  foreach( $module in $modules ) {
+    Update-Module -Name $module -Credential $creds
+  }
+
+  Get-Module -Name $modules
+
 }
 
 function Get-DefaultEditor {
@@ -142,16 +166,24 @@ Remove-Item alias:ls
 
 $ENV:EDITOR = Get-DefaultEditor
 
-New-Alias -Name gh    -Value Get-History 
-New-Alias -Name i     -Value Invoke-History
-New-Alias -Name code  -Value $ENV:EDITOR
-New-Alias -Name sudo  -Value Start-ElevatedConsole
-New-Alias -Name top   -Value (Join-PATH $ENV:SCRIPTS_HOME "TaskManager\Get-CpuLoad.ps1")
-New-Alias -Name ll    -Value Get-AllFilesAndDirectories
-New-Alias -Name ls    -Value Get-FilesAndDirectories
-New-Alias -Name hf    -Value Edit-HostFile
-New-Alias -Name home  -Value Set-Home
-
+New-Alias -Name gh        -Value Get-History 
+New-Alias -Name i         -Value Invoke-History
+New-Alias -Name code      -Value $ENV:EDITOR
+New-Alias -Name sudo      -Value Start-ElevatedConsole
+New-Alias -Name ll        -Value Get-AllFilesAndDirectories
+New-Alias -Name ls        -Value Get-FilesAndDirectories
+New-Alias -Name hf        -Value Edit-HostFile
+New-Alias -Name home      -Value Set-Home
+New-Alias -Name vi        -Value vim
+New-Alias -Name Get-Hash  -Value Get-FileHash
+New-Alias -Name rdp       -Value (Join-Path -Path $ENV:windir -ChildPath "system32\mstsc.exe")
+New-Alias -Name vm        -Value New-AzureVM
+New-Alias -Name vpn       -Value Connect-ToAzureVPN
+New-Alias -Name top       -Value (Join-PATH $ENV:SCRIPTS_HOME "TaskManager\Get-CpuLoad.ps1")
+New-Alias -Name pgrep     -Value Select-String 
+New-Alias -name admin     -Value Get-AzAdminPassword
+New-Alias -name spn       -Value Get-AzServicePrincipalSecret
+New-Alias -name devops    -Value Get-AzDevOpsToken
 
 $ChocolateyProfile = "$ENV:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
