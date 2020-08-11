@@ -1,14 +1,18 @@
 {
     "team.showWelcomeMessage": false,
     "files.autoSave": "afterDelay",
-    "files.defaultLanguage": "powershell",
-    "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\6\\pwsh.exe",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "explorer.confirmDelete": false,
-    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDragAndDrop": false,
+    "editor.fontFamily": "Cascadia Code, Consolas, 'Courier New', monospace",
     "git.enableSmartCommit": true,
     "azureFunctions.showProjectWarning": false,
-    "git.autofetch": true,
-    "editor.fontFamily": "Cascadia Code, Consolas, 'Courier New', monospace",
-    "window.zoomLevel": 0,
-    "editor.minimap.enabled": false
+    "go.formatTool": "goimports",
+    "powershell.promptToUpdatePowerShell": false,
+    "python.jediEnabled": false,
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    "terminal.integrated.shellArgs.windows": ["-NoLogo"],
+    "terminal.integrated.automationShell.windows": ""
 }
