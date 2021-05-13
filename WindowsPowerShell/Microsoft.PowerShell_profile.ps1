@@ -6,7 +6,7 @@ $MaximumHistoryCount=4096
 Set-PSReadLineKeyHandler -Key UpArrow   -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key Tab       -Function TabCompleteNext
-#Set-PSReadLineKeyHandler -Key Tab       -Function Completedules
+Set-PSReadLineOption     -PredictionSource History
 
 #Aliases moved to bottom after all functions are defined
 
@@ -18,6 +18,44 @@ if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Saved Games" )
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" )))     { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "3D Objects" )}
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )))      { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Favorites" )}
 if((Test-Path -Path (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )))          { Remove-Item -Recurse -Force (Join-Path -Path $ENV:USERPROFILE -ChildPath "Links" )}
+
+function New-AzureWin2K19Server 
+{
+  param(
+    [switch] $destroy
+  )
+
+  Set-Variable -Name terraform_location -Value "c:\code\github\packer-windows2019-azure\terraform\"
+
+  Set-EnvironmentVariable -Key ARM_SUBSCRIPTION_ID  -Value "bfafbd89-a2a3-43a5-af72-fb4ef0c514c1"
+  Set-EnvironmentVariable -Key ARM_TENANT_ID        -Value "72f988bf-86f1-41af-91ab-2d7cd011db47"
+  Set-EnvironmentVariable -Key ARM_CLIENT_ID        -Value "4e565daf-621d-48d3-b010-1208da519cbe"
+  Set-EnvironmentVariable -Key ARM_CLIENT_SECRET    -Value (spn)
+
+  $cwd = $PWD.Path
+  Set-location -Path $terraform_location
+
+  $opts = @{
+    ResourceGroupName           = "CORE_INFRA_TEMPLATES_RG"
+    GalleryName                 = "BjdAzureDemoGallery"
+    GalleryImageDefinitionName  = "bjdWin2k19.core"
+  }
+  $latest_version = Get-AzGalleryImageVersion @opts | Select-Object -ExpandProperty Name | Sort-Object -Descending -Top 1
+
+  if($destroy) {
+    terraform destroy -var-file azure.tfvars -var "image_version=$latest_version"
+  }
+  else {
+    terraform apply -var-file azure.tfvars -var "image_version=$latest_version"
+  }
+  Set-Location -Path $cwd
+
+  Remove-EnvironmentVariable -Key ARM_SUBSCRIPTION_ID -Force
+  Remove-EnvironmentVariable -Key ARM_TENANT_ID -Force     
+  Remove-EnvironmentVariable -Key ARM_CLIENT_ID -Force     
+  Remove-EnvironmentVariable -Key ARM_CLIENT_SECRET -Force
+
+}
 
 function prompt
 {
