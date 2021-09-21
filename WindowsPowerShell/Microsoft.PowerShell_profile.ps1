@@ -1,5 +1,13 @@
 Import-Module -Name bjd.Common.Functions
 
+# Uncomment for macOS
+#Set-EnvironmentVariable -Key PUBKEY  -Value "/Users/briandenicola/.ssh/id_rsa.pub"
+#Set-EnvironmentVariable -Key EDITOR  -Value "/opt/homebrew/bin/code"
+#Set-EnvironmentVariable -Key PATH    -Value "/usr/local/microsoft/powershell/7:/Users/briandenicola/bin:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools"
+#
+#Invoke-Expression (oh-my-posh --init --shell pwsh --config /opt/homebrew/opt/oh-my-posh/themes/hotstick.minimal.omp.json)
+#
+
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $MaximumHistoryCount=4096
 
