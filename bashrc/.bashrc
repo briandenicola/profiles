@@ -124,13 +124,18 @@ umask 022
 cd
 
 export PATH=$PATH:~/bin
+
 source <(kubectl completion bash)
+source . <(flux completion bash)
+
 alias k='kubectl'
 alias p='pwsh -NoLogo'
 complete -F __start_kubectl k 
-#source bin/az.completion
+
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
-#. "/home/brian/.acme.sh/acme.sh.env"
+
 export GO111MODULE=on
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 alias utils='k run --restart=Never --rm -it --image=bjd145/utils:latest utils -- bash'
+
+#. "/home/brian/.acme.sh/acme.sh.env"
