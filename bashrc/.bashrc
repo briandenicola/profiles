@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-eval $(dircolors ~/.dircolors)
+#eval $(dircolors ~/.dircolors)
 #export DOCKER_HOST=tcp://localhost:2375
 export GOPATH=/home/brian/working/golang/
 
