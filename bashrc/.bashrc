@@ -126,7 +126,7 @@ cd
 export PATH=$PATH:~/bin
 
 source <(kubectl completion bash)
-source . <(flux completion bash)
+source <(flux completion bash)
 
 alias k='kubectl'
 alias p='pwsh -NoLogo'
