@@ -9,6 +9,14 @@ rm ~/.bashrc
 ln -s ~/code/profiles/bashrc/.bashrc ~/.bashrc
 source ~/.bashrc
 
+wget https://github.com/openservicemesh/osm/releases/download/v0.11.1/osm-v0.11.1-linux-amd64.tar.gz  -O -  | tar xzvf -
+sudo mv linux-amd64/osm /usr/local/bin
+rm -rf linux-amd64
+
+wget https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz -O - | tar xzvf -
+sudo mv linux-amd64/helm /usr/local/bin
+rm -rf linux-amd64
+
 sudo chown manager.manager -R ~/.azure/
 az login --identity
 
