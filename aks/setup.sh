@@ -3,6 +3,10 @@
 curl -s https://fluxcd.io/install.sh | sudo bash
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
+curl https://getmic.ro | bash
+mkdir bin
+mv micro bin/.
+
 sudo az aks install-cli
 
 rm ~/.bashrc 
