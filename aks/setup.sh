@@ -9,10 +9,6 @@ mv micro bin/.
 
 sudo az aks install-cli
 
-rm ~/.bashrc 
-ln -s ~/code/profiles/bashrc/.bashrc ~/.bashrc
-source ~/.bashrc
-
 wget https://github.com/openservicemesh/osm/releases/download/v0.11.1/osm-v0.11.1-linux-amd64.tar.gz  -O -  | tar xzvf -
 sudo mv linux-amd64/osm /usr/local/bin
 rm -rf linux-amd64
@@ -30,4 +26,8 @@ AKS=`az aks list -o json --query "[0].name" | tr -d '\"'`
 az aks get-credentials -g $RG -n $AKS 
 kubelogin convert-kubeconfig -l msi 
 
-k get pods -A
+rm ~/.bashrc 
+ln -s ~/code/profiles/bashrc/.bashrc ~/.bashrc
+source ~/.bashrc
+
+kubectl get pods -A
