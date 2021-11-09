@@ -13,6 +13,10 @@ wget https://github.com/openservicemesh/osm/releases/download/v0.11.1/osm-v0.11.
 sudo mv linux-amd64/osm /usr/local/bin
 rm -rf linux-amd64
 
+curl -L https://istio.io/downloadIstio | sh -
+sudo mv istio-1*/bin/istioctl /usr/local/bin/
+rm -rf istio-*
+
 wget https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz -O - | tar xzvf -
 sudo mv linux-amd64/helm /usr/local/bin
 rm -rf linux-amd64
