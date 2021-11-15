@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt install jq -y
+
 curl -s https://fluxcd.io/install.sh | sudo bash
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
