@@ -21,6 +21,11 @@ wget https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz -O - | tar xzvf -
 sudo mv linux-amd64/helm /usr/local/bin
 rm -rf linux-amd64
 
+wget https://github.com/derailed/k9s/releases/download/v0.24.15/k9s_Linux_x86_64.tar.gz -O - | tar xzvf -
+sudo mv k9s /usr/local/bin/
+rm LICENSE
+rm README.md
+
 sudo chown manager.manager -R ~/.azure/
 az login --identity
 
