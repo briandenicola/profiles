@@ -231,7 +231,4 @@ New-Alias -name admin     -Value Get-AzAdminPassword
 New-Alias -name spn       -Value Get-AzServicePrincipalSecret
 New-Alias -name devops    -Value Get-AzDevOpsToken
 
-$ChocolateyProfile = "$ENV:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-    Import-Module "$ChocolateyProfile"
-}
+oh-my-posh --init --shell pwsh --config C:\Users\brdenico\code\profiles\oh-my-posh\ohmyposh.json | Invoke-Expression
