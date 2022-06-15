@@ -8,6 +8,11 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+export ARM_TENANT_ID=
+export ARM_SUBSCRIPTION_ID=
+export ARM_CLIENT_ID=
+export ARM_CLIENT_SECRET=
+
 plugins=(
 	common-aliases
 	git
@@ -29,7 +34,7 @@ source $ZSH/oh-my-zsh.sh
 alias ds='DirectorySize'
 alias k='kubectl'
 alias pwsh='pwsh -NoLogo'
-alias utils='k run --restart=Never --rm -it --image=bjd145/utils:2.2 utils'
+alias utils='k run --restart=Never --rm -it --image=bjd145/utils:3.8 utils'
 
 source <(kubectl completion zsh)
 source . <(flux completion zsh)
