@@ -79,22 +79,6 @@ function prompt
   return " "
 }
 
-function Update-MyModules {
-  $modules = @(
-    "bjd.Common.Functions",
-    "bjd.Azure.Functions"
-  )
-
-  $creds = New-PSCredentials -UserName $ENV:USEREMAIL -Password (devops)
-
-  foreach( $module in $modules ) {
-    Update-Module -Name $module -Credential $creds
-  }
-
-  Get-Module -Name $modules
-
-}
-
 function Get-DefaultEditor {
   $code = Get-ExecutablePath -processName "code.exe"
   if( [string]::IsNullOrEmpty($code) ) {
@@ -227,8 +211,7 @@ New-Alias -Name vm        -Value New-AzureVM
 New-Alias -Name vpn       -Value Connect-ToAzureVPN
 New-Alias -Name top       -Value (Join-PATH $ENV:SCRIPTS_HOME "TaskManager\Get-CpuLoad.ps1")
 New-Alias -Name pgrep     -Value Select-String 
-New-Alias -name admin     -Value Get-AzAdminPassword
-New-Alias -name spn       -Value Get-AzServicePrincipalSecret
-New-Alias -name devops    -Value Get-AzDevOpsToken
+New-Alias -Name nslookup  -Value Resolve-DnsName
+New-Alias -Name ipconfig  -Value Get-NetIPAddress
 
 oh-my-posh --init --shell pwsh --config C:\Users\brdenico\code\profiles\oh-my-posh\ohmyposh.json | Invoke-Expression
