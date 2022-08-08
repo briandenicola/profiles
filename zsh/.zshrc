@@ -4,6 +4,7 @@ export ZSH="/home/brian/.oh-my-zsh"
 export PATH=$HOME/bin:$HOME/bin/vaultcli:/usr/local/bin:$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export GO111MODULE=on
+export GOPATH=~/.go
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
