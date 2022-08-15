@@ -38,8 +38,13 @@ alias pwsh='pwsh -NoLogo'
 alias utils='k run --restart=Never --rm -it --image=bjd145/utils:3.8 utils'
 
 source <(kubectl completion zsh)
-source . <(flux completion zsh)
 complete -F __start_kubectl k 
+
+if command -v flux &> /dev/null
+then
+    source <(flux completion bash)
+fi
+
 
 #source bin/az.completion
 #. "/home/brian/.acme.sh/acme.sh.env"
