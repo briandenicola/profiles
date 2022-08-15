@@ -1,6 +1,5 @@
 cd $HOME
 
-export ZSH="~/.oh-my-zsh"
 export PATH=$HOME/bin:$HOME/bin/vaultcli:/usr/local/bin:$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export GO111MODULE=on
@@ -28,7 +27,6 @@ plugins=(
 	zsh-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias ds='DirectorySize'

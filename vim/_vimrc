@@ -1,5 +1,3 @@
-source $VIMRUNTIME/defaults.vim
-
 set nowrap
 set nobackup
 set nowb
