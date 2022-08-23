@@ -2,6 +2,8 @@
     "team.showWelcomeMessage": false,
     "files.autoSave": "afterDelay",
     "editor.suggestSelection": "first",
+    "editor.inlineSuggest.enabled": true,
+    "editor.fontSize": 13,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -11,8 +13,15 @@
     "go.formatTool": "goimports",
     "powershell.promptToUpdatePowerShell": false,
     "python.jediEnabled": false,
+    "redhat.telemetry.enabled": false,
+    "python.languageServer": "None",
+    "workbench.tree.indent": 20,
     "terminal.integrated.fontFamily": "MesloLGS NF",
     "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
     "terminal.integrated.shellArgs.windows": ["-NoLogo"],
-    "terminal.integrated.automationShell.windows": ""
+    "terminal.integrated.automationShell.windows": "",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.telemetryLevel": "off"
 }
