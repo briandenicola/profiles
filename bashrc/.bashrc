@@ -116,26 +116,24 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#eval $(dircolors ~/.dircolors)
-#export DOCKER_HOST=tcp://localhost:2375
-export GOPATH=/home/brian/working/golang/
+
 
 umask 022
 cd
-
-export PATH=$PATH:~/bin
+export PATH=$HOME/bin:$HOME/bin/vaultcli:/usr/local/bin:$PATH
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export GO111MODULE=on
+export GOPATH=~/.go
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 source <(kubectl completion bash)
-source <(flux completion bash)
+complete -F __start_kubectl k 
+
+if command -v flux &> /dev/null
+then
+    source <(flux completion bash)
+fi
 
 alias k='kubectl'
 alias p='pwsh -NoLogo'
-complete -F __start_kubectl k 
-
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
-
-export GO111MODULE=on
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-alias utils='k run --restart=Never --rm -it --image=bjd145/utils:latest utils -- bash'
-
-#. "/home/brian/.acme.sh/acme.sh.env"
+alias utils='k run --restart=Never --rm -it --image=bjd145/utils:3.8 utils'

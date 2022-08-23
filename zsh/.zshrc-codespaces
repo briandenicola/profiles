@@ -1,13 +1,9 @@
-cd $HOME
-
+export ZSH_THEME=simple 
 export PATH=$HOME/bin:$HOME/bin/vaultcli:/usr/local/bin:$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export GO111MODULE=on
 export GOPATH=~/.go
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
 export ARM_TENANT_ID=
 export ARM_SUBSCRIPTION_ID=
 export ARM_CLIENT_ID=
@@ -23,10 +19,7 @@ plugins=(
 	bundler
 	dotenv
 	kubectl
-	zsh-autosuggestions
-	zsh-syntax-highlighting
 )
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
 alias ds='DirectorySize'
