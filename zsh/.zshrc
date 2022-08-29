@@ -8,11 +8,6 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-export ARM_TENANT_ID=
-export ARM_SUBSCRIPTION_ID=
-export ARM_CLIENT_ID=
-export ARM_CLIENT_SECRET=
-
 plugins=(
 	common-aliases
 	git
