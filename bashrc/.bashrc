@@ -136,4 +136,4 @@ fi
 
 alias k='kubectl'
 alias p='pwsh -NoLogo'
-alias utils='k run --restart=Never --rm -it --image=bjd145/utils:3.8 utils'
+alias utils='k run --restart=Never --rm -it --image=bjd145/utils:3.10 utils'

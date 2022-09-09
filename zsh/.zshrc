@@ -27,7 +27,7 @@ source ~/.oh-my-zsh/oh-my-zsh.sh
 alias ds='DirectorySize'
 alias k='kubectl'
 alias pwsh='pwsh -NoLogo'
-alias utils='k run --restart=Never --rm -it --image=bjd145/utils:3.8 utils'
+alias utils='k run --restart=Never --rm -it --image=bjd145/utils:3.10 utils'
 
 source <(kubectl completion zsh)
 complete -F __start_kubectl k 
