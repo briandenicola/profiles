@@ -21,20 +21,21 @@ plugins=(
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
 alias ds='DirectorySize'
 alias k='kubectl'
 alias pwsh='pwsh -NoLogo'
-alias utils='k run --restart=Never --rm -it --image=bjd145/utils:3.10 utils'
+alias utils='kubectl run --restart=Never --image=bjd145/utils:3.10 utils'
 
 source <(kubectl completion zsh)
 complete -F __start_kubectl k 
 
 if command -v flux &> /dev/null
 then
-    source <(flux completion bash)
+    source <(flux completion zsh)
 fi
 
 
