@@ -34,7 +34,7 @@ complete -F __start_kubectl k
 
 if command -v flux &> /dev/null
 then
-    source <(flux completion bash)
+    source <(flux completion zsh)
 fi
 
 
