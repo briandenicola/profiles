@@ -13,14 +13,6 @@
           "type": "root"
         },
         {
-          "foreground": "#ffffff",
-          "properties": {
-            "template": " {{ .UserName }}@{{ .HostName }} "
-          },
-          "style": "plain",
-          "type": "session"
-        },
-        {
           "background": "#91ddff",
           "foreground": "#100e23",
           "powerline_symbol": "\ue0b0",
