@@ -18,16 +18,12 @@ plugins=(
 )
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
-alias ds='DirectorySize'
-alias k='kubectl'
-alias pwsh='pwsh -NoLogo'
-alias utils='kubectl run --restart=Never --image=bjd145/utils:3.10 utils'
+if [ -f $HOME/.aliases.rc ]; then source $HOME/.aliases.rc; fi
+if [ -f $HOME/.banner.rc ]; then source $HOME/.banner.rc; fi
 
-source <(kubectl completion zsh)
+if command -v kubectl > /dev/null; then source <(kubectl completion zsh); fi
+if command -v flux > /dev/null; then source <(flux completion zsh); fi
+if command -v az > /dev/null; then source /etc/bash_completion.d/azure-cli; fi
+
 complete -F __start_kubectl k 
-
-if command -v flux &> /dev/null
-then
-    source <(flux completion zsh)
-fi
 

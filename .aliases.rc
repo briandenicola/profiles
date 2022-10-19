@@ -1,0 +1,21 @@
+
+
+# Misc
+alias k='kubectl'
+alias pwsh='pwsh -NoLogo'
+alias utils='kubectl run --restart=Never --image=bjd145/utils:3.10 utils'
+
+JUMPBOX_ID='/subscriptions/ccfc5dda-43af-4b5e-8cc2-1dda18f2382e/resourceGroups/Core_Jumpbox_RG/providers/Microsoft.Compute/virtualMachines/bjdb294ad88'
+alias tunnel="az network bastion tunnel --name  BJD-Core-VNet-001-bastion --resource-group Core_Network_RG --target-resource-id ${JUMPBOX_ID} --resource-port 22 --port 2222"
+
+alias dnsfix='echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf'
+
+alias docker-start='sudo /etc/init.d/docker start'
+alias docker-stop='sudo /etc/init.d/docker stop'
+alias docker-prune='docker container prune -f && docker image prune -f && docker volume prune -f && docker buildx prune -f'
+alias docker-clean='docker rm -f $(docker ps -aq)'
+
+alias gh-view='gh repo view --web'
+
+alias terraform-clean='rm -rf .terraform.lock.hcl .terraform terraform.tfstate terraform.tfstate.backup .terraform.tfstate.lock.info'
+alias npm-clean='rm -rf node_modules && rm -rf package-lock.json && npm install'

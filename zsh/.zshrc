@@ -4,7 +4,6 @@ export PATH=$HOME/bin:$HOME/bin/vaultcli:/usr/local/bin:$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export GO111MODULE=on
 export GOPATH=~/.go
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -22,23 +21,17 @@ plugins=(
 	zsh-syntax-highlighting
 )
 
+if [ -f $HOME/.aliases.rc ]; then source $HOME/.aliases.rc; fi
+if [ -f $HOME/.banner.rc ]; then source $HOME/.banner.rc; fi
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
-alias ds='DirectorySize'
-alias k='kubectl'
-alias pwsh='pwsh -NoLogo'
-alias utils='kubectl run --restart=Never --image=bjd145/utils:3.10 utils'
+if command -v kubectl > /dev/null; then source <(kubectl completion zsh); fi
+if command -v flux > /dev/null; then source <(flux completion zsh); fi
+if command -v az > /dev/null; then source /etc/bash_completion.d/azure-cli; fi
 
-source <(kubectl completion zsh)
 complete -F __start_kubectl k 
-
-if command -v flux &> /dev/null
-then
-    source <(flux completion zsh)
-fi
-
-
 
 #source bin/az.completion
 #. "/home/brian/.acme.sh/acme.sh.env"
