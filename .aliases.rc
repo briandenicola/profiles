@@ -1,14 +1,14 @@
-
-
-# Misc
 alias k='kubectl'
+alias t='terraform'
 alias pwsh='pwsh -NoLogo'
 alias utils='kubectl run --restart=Never --image=bjd145/utils:3.10 utils'
+alias ghupdate='pwsh -command "Invoke-GitReposPull -ReposRoot ~/code -Verbose -IncludeStatus"' 
+alias uuid='pwsh -command "New-UUID"' 
+alias ds='DirectorySize' 
 
-JUMPBOX_ID=''
-alias tunnel="az network bastion tunnel --name  BJD-Core-VNet-001-bastion --resource-group Core_Network_RG --target-resource-id ${JUMPBOX_ID} --resource-port 22 --port 2222"
+alias tunnel="az network bastion tunnel --name ${BASTION_NAME} --resource-group ${BASTION_RG} --target-resource-id ${JUMPBOX_ID} --resource-port 22 --port 2222"
 
-alias dnsfix='echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf'
+alias dnsfix='echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf'
 
 alias docker-start='sudo /etc/init.d/docker start'
 alias docker-stop='sudo /etc/init.d/docker stop'
