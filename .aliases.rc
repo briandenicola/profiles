@@ -16,6 +16,8 @@ alias docker-prune='docker container prune -f && docker image prune -f && docker
 alias docker-clean='docker rm -f $(docker ps -aq)'
 
 alias gh-view='gh repo view --web'
+alias gh-ssh='gh codespace ssh'
+alias gh-code='gh codespace code'
 
 alias terraform-clean='rm -rf .terraform.lock.hcl .terraform terraform.tfstate terraform.tfstate.backup .terraform.tfstate.lock.info'
 alias npm-clean='rm -rf node_modules && rm -rf package-lock.json && npm install'
