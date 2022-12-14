@@ -9,6 +9,7 @@ alias ds='DirectorySize'
 alias tunnel="az network bastion tunnel --name ${BASTION_NAME} --resource-group ${BASTION_RG} --target-resource-id ${JUMPBOX_ID} --resource-port 22 --port 2222"
 
 alias dnsfix='echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf'
+alias kubefix='sed -i 's/devicecode/azurecli/g' ~/.kube/config'
 
 alias docker-start='sudo /etc/init.d/docker start'
 alias docker-stop='sudo /etc/init.d/docker stop'
