@@ -5,6 +5,8 @@ export GO111MODULE=on
 export GOPATH=~/.go
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+git config pull.rebase false
+
 plugins=(
 	common-aliases
 	git
