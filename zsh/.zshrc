@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/local/.bin:/usr/local/bin:$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export GO111MODULE=on
 export GOPATH=~/.go
