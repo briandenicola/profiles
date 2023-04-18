@@ -28,3 +28,5 @@ alias update-certs='acme.sh --server letsencrypt --renew-all --force'
 alias azdlogin='azd login --client-id ${ARM_CLIENT_ID} --client-secret ${ARM_CLIENT_SECRET} --tenant-id ${ARM_TENANT_ID}'
 
 alias git-commitversion='git rev-parse HEAD | head -c 8'
+
+alias dsstore-clean='find . -name .DS_Store | xargs rm -f {}\;'
