@@ -1,62 +1,54 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "final_space": true,
   "blocks": [
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#FFEE58",
-          "properties": {
-            "template": " \uf0e7 "
-          },
+          "type": "root",
           "style": "plain",
-          "type": "root"
+          "foreground": "#FFEE58",
+          "template": " \uf0e7 "
         },
         {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#100e23",
           "background": "#91ddff",
-          "foreground": "#100e23",
-          "powerline_symbol": "\ue0b0",
+          "template": " {{ .Path }} ",
           "properties": {
-            "style": "full",
-            "template": " {{ .Path }} "
-          },
-          "style": "powerline",
-          "type": "path"
+            "style": "full"
+          }
         },
         {
-          "background": "#95ffa4",
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
           "foreground": "#193549",
-          "powerline_symbol": "\ue0b0",
-          "properties": {
-            "template": " {{ .HEAD }} "
-          },
-          "style": "powerline",
-          "type": "git"
+          "background": "#95ffa4",
+          "template": " {{ .HEAD }} "
         },
         {
-          "background": "#906cff",
+          "type": "python",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
           "foreground": "#100e23",
-          "powerline_symbol": "\ue0b0",
-          "properties": {
-            "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
-          },
-          "style": "powerline",
-          "type": "python"
+          "background": "#906cff",
+          "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
         },
         {
-          "background": "#ff8080",
-          "foreground": "#ffffff",
-          "powerline_symbol": "\ue0b0",
-          "properties": {
-            "template": " \ue20f "
-          },
+          "type": "exit",
           "style": "powerline",
-          "type": "exit"
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#ff8080",
+          "template": " \ue20f "
         }
-      ],
-      "type": "prompt"
+      ]
     }
-  ],
-  "final_space": true,
-  "version": 1
+  ]
 }
