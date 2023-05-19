@@ -8,6 +8,7 @@ alias utils-deploy-exec='kubectl exec -it deployment/utils -- bash'
 alias ghupdate='pwsh -command "Invoke-GitReposPull -ReposRoot ~/code -Verbose -IncludeStatus"' 
 alias uuid='pwsh -command "New-UUID"' 
 alias ds='DirectorySize' 
+alias k9s="k9s --logoless --readonly"
 
 alias tunnel="az network bastion tunnel --name ${BASTION_NAME} --resource-group ${BASTION_RG} --target-resource-id ${JUMPBOX_ID} --resource-port 22 --port 2222"
 
