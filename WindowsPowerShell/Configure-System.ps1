@@ -13,7 +13,7 @@ cp .\Microsoft.PowerShell_profile.ps1 c:\Users\Manager\Documents\PowerShell\.
 New-Item -Path c:\ -Name code -ItemType Directory
 Set-location C:\code
 
-git clone git@github.com:briandencola/psscripts.git
+git clone https://github.com/briandenicola/psscripts.git
 cd c:\Code\psscripts\Miscellaneous\
 .\Update-PSModules.ps1
 
