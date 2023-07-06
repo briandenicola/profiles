@@ -3,20 +3,13 @@
 # Get eth0 IP address or fallback to local
 if command -v ip &> /dev/null; then
   ip=$(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+elif command -v ifconfig  > /dev/null; then 
+  ip=$(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' )
 else
   ip=$(hostname -i)
 fi
 
-# Get public IP address and cache results
-declare publicip_cache_age=99900
-if [[ -f /tmp/publicip ]]; then
-  publicip_cache_age=$(( $(date +'%s') - $(stat -c %Y /tmp/publicip) ))
-fi
-# Cache results for 6 hours, as your IP doesn't change that often!
-if (( publicip_cache_age > (6*3600) )); then
-  curl -m 1 -s ifconfig.me > /tmp/publicip
-fi
-publicip=$(cat /tmp/publicip)
+publicip=$(curl -m 1 -s ifconfig.me)
 
 # Work out where we are running
 where="Some Linux system"
@@ -26,7 +19,8 @@ if [[ -f /.dockerenv ]]; then where="Inside a Docker container"; fi
 if [[ ! -z $REMOTE_CONTAINERS_IPC ]]; then where="Inside a Devcontainer. Let's code!"; fi
 if [[ ! -z $ACC_TERM_ID ]]; then where="Azure Cloud Shell ($ACC_LOCATION)\e[37m"; fi
 if [[ $CODESPACES == "true" ]]; then where="GitHub Codespaces\e[37m"; fi
-if [[ "$(lsb_release -i)" =~ "Raspbian" ]]; then where="Raspberry Pi"; fi
+if command -v sw_vers > /dev/null && [[ "$(sw_vers --productName)" =~ "macOS" ]]; then where="Apple MacOS"; fi
+if command -v lsb_release > /dev/null && [[ "$(lsb_release -i)" =~ "Raspbian" ]]; then where="Raspberry Pi"; fi
 
 # And what shell is in use (default assume Zsh + P10K)
 shelltype="Oh My Zsh \e[37m& \e[38;5;226mPowerlevel10K"
@@ -39,6 +33,8 @@ if test -f /etc/os-release; then
   version=$VERSION
 elif command -v lsb_release > /dev/null; then
   version=$(lsb_release -ds)
+elif command -v sw_vers > /dev/null; then 
+  version=`echo $(sw_vers --productVersion) $(sw_vers --buildVersion)`
 fi
 
 # Show the banner
