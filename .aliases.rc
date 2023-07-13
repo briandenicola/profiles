@@ -9,6 +9,7 @@ alias ghupdate='pwsh -command "Invoke-GitReposPull -ReposRoot ~/code -Verbose -I
 alias uuid='pwsh -command "New-UUID"' 
 alias ds='DirectorySize' 
 alias k9s="k9s --logoless"
+alias kgetnodes="k get nodes -o wide -L kubernetes.azure.com/node-image-version"
 
 alias tunnel="az network bastion tunnel --name ${BASTION_NAME} --resource-group ${BASTION_RG} --target-resource-id ${JUMPBOX_ID} --resource-port 22 --port 2222"
 
