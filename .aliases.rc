@@ -35,3 +35,4 @@ alias azdlogin='azd login --client-id ${ARM_CLIENT_ID} --client-secret ${ARM_CLI
 alias git-commitversion='git rev-parse HEAD | head -c 8'
 
 alias dsstore-clean='find . -name .DS_Store | xargs rm -f {}\;'
+alias nas='ssh -i ~/.ssh/id_rsa_nas manager@nas'
