@@ -37,4 +37,6 @@ alias git-commitversion='git rev-parse HEAD | head -c 8'
 alias dsstore-clean='find . -name .DS_Store | xargs rm -f {}\;'
 alias nas='ssh -i ~/.ssh/id_rsa_nas manager@nas'
 
-alias istiover="kubectl -n aks-istio-system get deployments -o jsonpath='{.items[0].metadata.labels.istio\.io/rev}'"
+alias istio-version="kubectl -n aks-istio-system get deployments -o jsonpath='{.items[0].metadata.labels.istio\.io/rev}'"
+alias git-tool-push='git add .; git commit -m "New tool"; git push'
+alias git-profile-push='git add .; git commit -m "New update preview"; git push'
