@@ -39,3 +39,4 @@ alias nas='ssh -i ~/.ssh/id_rsa_nas manager@nas'
 
 alias istio-version="kubectl -n aks-istio-system get deployments -o jsonpath='{.items[0].metadata.labels.istio\.io/rev}'"
 alias git-commit='bash ~/scripts/Miscellaneous/git-commit.sh'
+alias aks-new='pushd $PWD; cd ~/code/kubernetes/aks/basic && task up; popd'
