@@ -2,6 +2,7 @@ export ZSH="/home/brian/.oh-my-zsh"
 export PATH=$HOME/.local/bin/buildkit/bin:$HOME/.local/bin:$HOME/bin/:$HOME/.porter:/usr/local/bin:$HOME/.acme.sh:$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=true
+export AZURE_DEV_COLLECT_TELEMETRY=true
 export GO111MODULE=on
 export GOPATH=~/.go
 
