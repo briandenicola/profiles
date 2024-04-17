@@ -32,6 +32,7 @@ if command -v flux > /dev/null; then source <(flux completion zsh); fi
 if command -v az > /dev/null; then source /etc/bash_completion.d/azure-cli; fi
 if command -v rad > /dev/null; then source <(rad completion zsh); fi
 
+compdef kubecolor=kubectl
 complete -F __start_kubectl k 
 
 . "/home/brian/.acme.sh/acme.sh.env"

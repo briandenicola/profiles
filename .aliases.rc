@@ -1,3 +1,4 @@
+alias kubectl='kubecolor'
 alias k='kubectl'
 alias t='terraform'
 alias pwsh='pwsh -NoLogo'
