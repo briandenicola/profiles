@@ -1,6 +1,6 @@
 alias kubectl='kubecolor'
 alias k='kubectl'
-alias t='terraform'
+alias terraform='tofu'
 alias pwsh='pwsh -NoLogo'
 alias utils-pod='kubectl run --restart=Never --image=bjd145/utils:3.15 utils'
 alias utils-pod-exec='kubectl exec -it utils -- bash'
@@ -42,3 +42,4 @@ alias istio-version="kubectl -n aks-istio-system get deployments -o jsonpath='{.
 alias git-commit='bash ~/scripts/Miscellaneous/git-commit.sh'
 alias aks-new='pushd $PWD; cd ~/code/kubernetes/aks/basic && task up; popd'
 alias rg='az group list -o table'
+alias my-pip='curl -m 1 -s ifconfig.me'
