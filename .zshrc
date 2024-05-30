@@ -22,6 +22,7 @@ plugins=(
 
 if [ -f $HOME/.aliases.rc ]; then source $HOME/.aliases.rc; fi
 if [ -f $HOME/.banner.rc ]; then source $HOME/.banner.rc; fi
+if [ -f $HOME/.local.rc ]; then source $HOME/.local.rc; fi
 
 source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -32,15 +33,15 @@ if command -v flux > /dev/null; then source <(flux completion zsh); fi
 if command -v az > /dev/null; then source /etc/bash_completion.d/azure-cli; fi
 if command -v rad > /dev/null; then source <(rad completion zsh); fi
 
+eval "$(gh copilot alias -- zsh)"
+
 compdef kubecolor=kubectl
 complete -F __start_kubectl k 
 
 . "/home/brian/.acme.sh/acme.sh.env"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-if [ -f $HOME/.local.rc ]; then source $HOME/.local.rc; fi
+#export SDKMAN_DIR="$HOME/.sdkman"
+#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 cd $HOME
