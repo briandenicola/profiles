@@ -42,6 +42,6 @@ alias istio-version="kubectl -n aks-istio-system get deployments -o jsonpath='{.
 alias git-commit='bash ~/scripts/Miscellaneous/git-commit.sh'
 alias aks-new='pushd $PWD; cd ~/code/kubernetes/aks/basic && task up; popd'
 alias rg='az group list -o table'
+alias tags='az group list --tag Application  --query "[].{Name:name,Region:location,AppName:tags.AppName,Application:tags.Application}" -o table'
 alias my-pip='curl -m 1 -s ifconfig.me'
-
 alias '??'=ghcs
