@@ -46,4 +46,4 @@ alias tags='az group list --tag Application  --query "[].{Name:name,Region:locat
 alias resources='az resource list  -o table --query "sort_by([].{Name:name,Type:type,RG:resourceGroup,CreateDate:createdTime}, &CreateDate)" | more'
 alias my-pip='curl -m 1 -s ifconfig.me'
 alias '??'=ghcs
-alias admin-shell='sudo.exe wt.exe split-pane -p "PowerShell" -d .'
+alias admin-shell='sudo.exe wt.exe split-pane -p "PowerShell"'
