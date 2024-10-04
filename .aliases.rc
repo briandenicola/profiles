@@ -47,3 +47,10 @@ alias resources='az resource list  -o table --query "sort_by([].{Name:name,Type:
 alias my-pip='curl -m 1 -s ifconfig.me'
 alias '??'=ghcs
 alias admin-shell='sudo.exe wt.exe split-pane -p "PowerShell"'
+alias @@="source ~/.local.rc"
+
+export AKS_CLUSTER_NAME=`kubectl config get-contexts | grep -i \* | awk '{print $2}'`
+export AKS_CLUSTER_RG=`az aks list --only-show-errors  --query "[?name=='${AKS_CLUSTER_NAME}']" | jq -r ".[].resourceGroup"`
+alias  aksstart='az aks start -n ${AKS_CLUSTER_NAME} -g ${AKS_CLUSTER_RG} --verbose --no-wait'
+alias  aksstate='az aks show  -n ${AKS_CLUSTER_NAME} -g ${AKS_CLUSTER_RG} --query "{Name:name, Location:location, RG:resourceGroup, Version:currentKubernetesVersion, State:provisioningState}" --output table'
+alias  clusters='kubectl config get-contexts | awk "{print \$2}"'
