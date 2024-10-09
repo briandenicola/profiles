@@ -1,21 +1,28 @@
+alias @@="source ~/.aliases.rc"
+alias '??'=ghcs
+
+alias my-pip='curl -m 1 -s ifconfig.me'
+alias tunnel="az network bastion tunnel --name ${BASTION_NAME} --resource-group ${BASTION_RG} --target-resource-id ${JUMPBOX_ID} --resource-port 22 --port 2222"
+
 alias kubectl='kubecolor'
 alias k='kubectl'
 alias terraform='tofu'
 alias pwsh='pwsh -NoLogo'
+alias ds='DirectorySize' 
+alias k9s="k9s --logoless"
+
 alias utils-pod='kubectl run --restart=Never --image=bjd145/utils:3.20 utils'
 alias utils-pod-exec='kubectl exec -it utils -- bash'
 alias utils-deploy='task --dir ~/code/kitchen-sink/deploy up'
 alias utils-deploy-exec='kubectl -n utils exec -it deployment/utils -- bash'
-alias ghupdate='pwsh -command "Invoke-GitReposPull -ReposRoot ~/code -Verbose -IncludeStatus"' 
-alias uuid='pwsh -command "New-UUID"' 
-alias ds='DirectorySize' 
-alias k9s="k9s --logoless"
-alias kgetnodes="k get nodes -o wide -L kubernetes.azure.com/node-image-version"
 
-alias tunnel="az network bastion tunnel --name ${BASTION_NAME} --resource-group ${BASTION_RG} --target-resource-id ${JUMPBOX_ID} --resource-port 22 --port 2222"
+alias uuid='pwsh -command "New-UUID"' 
+
+alias kgetnodes="k get nodes -o wide -L kubernetes.azure.com/node-image-version"
 
 alias dnsfix='echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf'
 alias kubefix='sed -i 's/devicecode/azurecli/g' ~/.kube/config'
+alias certfix='acme.sh --server letsencrypt --renew-all --force'
 
 alias docker-start='sudo /etc/init.d/docker start'
 alias docker-stop='sudo /etc/init.d/docker stop'
@@ -25,29 +32,21 @@ alias docker-clean='docker rm -f $(docker ps -aq)'
 alias gh-view='gh repo view --web'
 alias gh-ssh='gh codespace ssh'
 alias gh-code='gh codespace code'
+alias gh-update='pwsh -command "Invoke-GitReposPull -ReposRoot ~/code -Verbose -IncludeStatus"' 
 
 alias terraform-clean='rm -rf terraform.tfstate.d .terraform.lock.hcl .terraform terraform.tfstate terraform.tfstate.backup .terraform.tfstate.lock.info'
 alias npm-clean='rm -rf node_modules && rm -rf package-lock.json && npm install'
-
-alias update-certs='acme.sh --server letsencrypt --renew-all --force'
+alias dsstore-clean='find . -name .DS_Store | xargs rm -f {}\;'
 
 alias azdlogin='azd login --client-id ${ARM_CLIENT_ID} --client-secret ${ARM_CLIENT_SECRET} --tenant-id ${ARM_TENANT_ID}'
 
-alias git-commitversion='git rev-parse HEAD | head -c 8'
-
-alias dsstore-clean='find . -name .DS_Store | xargs rm -f {}\;'
-alias nas='ssh -i ~/.ssh/id_rsa_nas manager@nas'
-
 alias istio-version="kubectl -n aks-istio-system get deployments -o jsonpath='{.items[0].metadata.labels.istio\.io/rev}'"
 alias git-commit='bash ~/scripts/Miscellaneous/git-commit.sh'
+alias git-commitversion='git rev-parse HEAD | head -c 8'
 
 alias rg='az group list -o table'
 alias tags='az group list --tag Application  --query "[].{Name:name,Region:location,AppName:tags.AppName,Application:tags.Application}" -o table'
 alias resources='az resource list  -o table --query "sort_by([].{Name:name,Type:type,RG:resourceGroup,CreateDate:createdTime}, &CreateDate)" | more'
-alias my-pip='curl -m 1 -s ifconfig.me'
-alias '??'=ghcs
-alias admin-shell='sudo.exe wt.exe split-pane -p "PowerShell"'
-alias @@="source ~/.aliases.rc"
 
 export AKS_CLUSTER_NAME=`kubectl config get-contexts | grep -i \* | awk '{print $2}'`
 export AKS_CLUSTER_RG=`az aks list --only-show-errors  --query "[?name=='${AKS_CLUSTER_NAME}']" | jq -r ".[].resourceGroup"`
@@ -57,6 +56,7 @@ alias  clusters='kubectl config get-contexts | awk "{print \$2}"'
 
 alias wt='wt.exe -p PowerShell'
 alias z='wt.exe -p zsh'
+alias admin-shell='sudo.exe wt.exe split-pane -p "PowerShell"'
 
 alias new-cluster='task --dir ~/code/kubernetes/aks/basic up'
 alias new-windows='task --dir ~/code/azure/Templates/VirtualMachine up TYPE=Windows'
