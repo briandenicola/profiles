@@ -40,17 +40,24 @@ alias nas='ssh -i ~/.ssh/id_rsa_nas manager@nas'
 
 alias istio-version="kubectl -n aks-istio-system get deployments -o jsonpath='{.items[0].metadata.labels.istio\.io/rev}'"
 alias git-commit='bash ~/scripts/Miscellaneous/git-commit.sh'
-alias aks-new='pushd $PWD; cd ~/code/kubernetes/aks/basic && task up; popd'
+
 alias rg='az group list -o table'
 alias tags='az group list --tag Application  --query "[].{Name:name,Region:location,AppName:tags.AppName,Application:tags.Application}" -o table'
 alias resources='az resource list  -o table --query "sort_by([].{Name:name,Type:type,RG:resourceGroup,CreateDate:createdTime}, &CreateDate)" | more'
 alias my-pip='curl -m 1 -s ifconfig.me'
 alias '??'=ghcs
 alias admin-shell='sudo.exe wt.exe split-pane -p "PowerShell"'
-alias @@="source ~/.local.rc"
+alias @@="source ~/.aliases.rc"
 
 export AKS_CLUSTER_NAME=`kubectl config get-contexts | grep -i \* | awk '{print $2}'`
 export AKS_CLUSTER_RG=`az aks list --only-show-errors  --query "[?name=='${AKS_CLUSTER_NAME}']" | jq -r ".[].resourceGroup"`
 alias  aksstart='az aks start -n ${AKS_CLUSTER_NAME} -g ${AKS_CLUSTER_RG} --verbose --no-wait'
 alias  aksstate='az aks show  -n ${AKS_CLUSTER_NAME} -g ${AKS_CLUSTER_RG} --query "{Name:name, Location:location, RG:resourceGroup, Version:currentKubernetesVersion, State:provisioningState}" --output table'
 alias  clusters='kubectl config get-contexts | awk "{print \$2}"'
+
+alias wt='wt.exe -p PowerShell'
+alias z='wt.exe -p zsh'
+
+alias new-cluster='task --dir ~/code/kubernetes/aks/basic up'
+alias new-windows='task --dir ~/code/azure/Templates/VirtualMachine up TYPE=Windows'
+alias new-linux='task --dir ~/code/azure/Templates/VirtualMachine up TYPE=Linux'
