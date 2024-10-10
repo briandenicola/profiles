@@ -10,6 +10,7 @@ alias terraform='tofu'
 alias pwsh='pwsh -NoLogo'
 alias ds='DirectorySize' 
 alias k9s="k9s --logoless"
+alias apt-get='sudo apt-get'
 
 alias utils-pod='kubectl run --restart=Never --image=bjd145/utils:3.20 utils'
 alias utils-pod-exec='kubectl exec -it utils -- bash'
