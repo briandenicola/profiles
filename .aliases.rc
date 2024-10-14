@@ -19,8 +19,6 @@ alias utils-deploy-exec='kubectl -n utils exec -it deployment/utils -- bash'
 
 alias uuid='pwsh -command "New-UUID"' 
 
-alias kgetnodes="k get nodes -o wide -L kubernetes.azure.com/node-image-version"
-
 alias dnsfix='echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf'
 alias kubefix='sed -i 's/devicecode/azurecli/g' ~/.kube/config'
 alias certfix='acme.sh --server letsencrypt --renew-all --force'
@@ -53,6 +51,7 @@ export AKS_CLUSTER_NAME=`kubectl config get-contexts | grep -i \* | awk '{print 
 export AKS_CLUSTER_RG=`az aks list --only-show-errors  --query "[?name=='${AKS_CLUSTER_NAME}']" | jq -r ".[].resourceGroup"`
 alias  aks-start='az aks start -n ${AKS_CLUSTER_NAME} -g ${AKS_CLUSTER_RG} --verbose --no-wait'
 alias  aks-state='az aks show  -n ${AKS_CLUSTER_NAME} -g ${AKS_CLUSTER_RG} --query "{Name:name, Location:location, RG:resourceGroup, Version:currentKubernetesVersion, State:provisioningState, Power:powerState.code}" --output table'
+alias  aks-nodes="kubectl get nodes -o wide -L kubernetes.azure.com/node-image-version"
 alias  clusters='kubectl config get-contexts | awk "{print \$2}"'
 
 alias wt='wt.exe -p PowerShell'
