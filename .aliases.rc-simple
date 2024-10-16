@@ -1,0 +1,28 @@
+alias @@="source ~/.aliases.rc"
+alias '??'=ghcs
+
+alias my-pip='curl -m 1 -s ifconfig.me'
+
+alias pwsh='pwsh -NoLogo'
+alias ds='DirectorySize' 
+alias apt-get='sudo apt-get'
+
+alias uuid='pwsh -command "New-UUID"' 
+
+alias dnsfix='echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf'
+
+alias docker-start='sudo /etc/init.d/docker start'
+alias docker-stop='sudo /etc/init.d/docker stop'
+alias docker-prune='docker container prune -f && docker image prune -f && docker volume prune -f && docker buildx prune -f'
+alias docker-clean='docker rm -f $(docker ps -aq)'
+
+alias terraform-clean='rm -rf terraform.tfstate.d .terraform.lock.hcl .terraform terraform.tfstate terraform.tfstate.backup .terraform.tfstate.lock.info'
+alias npm-clean='rm -rf node_modules && rm -rf package-lock.json && npm install'
+alias dsstore-clean='find . -name .DS_Store | xargs rm -f {}\;'
+
+alias git-commit='bash ~/scripts/Miscellaneous/git-commit.sh'
+alias git-commitversion='git rev-parse HEAD | head -c 8'
+
+alias wt='wt.exe -p PowerShell'
+alias z='wt.exe -p zsh'
+alias admin-shell='sudo.exe wt.exe split-pane -p "PowerShell"'
