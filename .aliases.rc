@@ -59,5 +59,8 @@ alias z='wt.exe -p zsh'
 alias admin-shell='sudo.exe wt.exe split-pane -p "PowerShell"'
 
 alias cluster-up='task --dir ~/code/kubernetes/aks/basic up'
+alias cluster-down='task --dir ~/code/kubernetes/aks/basic down'
 alias win-up='task --dir ~/code/azure/Templates/VirtualMachine up TYPE=Windows'
+alias win-down='task --dir ~/code/azure/Templates/VirtualMachine down TYPE=Windows'
 alias linux-up='task --dir ~/code/azure/Templates/VirtualMachine up TYPE=Linux'
+alias linux-down='task --dir ~/code/azure/Templates/VirtualMachine down TYPE=Linux'
