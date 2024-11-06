@@ -1,5 +1,5 @@
 export ZSH_THEME=clean 
-export PATH=$HOME/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=true
 export AZURE_DEV_COLLECT_TELEMETRY=false
