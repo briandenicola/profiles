@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt upgrade
-sudo apt upgrade jq zsh kubecolor -y
+sudo apt upgrade jq zsh kubecolor unzip -y
 
 cp .banner.rc ~/.
 cp .aliases.rc-simple ~/.aliases.rc
