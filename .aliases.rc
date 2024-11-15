@@ -45,7 +45,7 @@ alias git-commitversion='git rev-parse HEAD | head -c 8'
 
 alias rg='az group list -o table'
 alias tags='az group list --tag Application  --query "[].{Name:name,Region:location,AppName:tags.AppName,Application:tags.Application}" -o table'
-alias resources='az resource list  -o table --query "sort_by([].{Name:name,Type:type,RG:resourceGroup,CreateDate:createdTime}, &CreateDate)" | more'
+alias resources='az resource list  -o table --query "sort_by([].{Name:name,Type:type,RG:resourceGroup,CreateDate:createdTime}, &CreateDate)"'
 
 export AKS_CLUSTER_NAME=`kubectl config get-contexts | grep -i \* | awk '{print $2}'`
 export AKS_CLUSTER_RG=`az aks list --only-show-errors  --query "[?name=='${AKS_CLUSTER_NAME}']" | jq -r ".[].resourceGroup"`
