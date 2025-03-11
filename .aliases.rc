@@ -16,7 +16,7 @@ alias utils-pod='kubectl run --restart=Never --image=bjd145/utils:3.20 utils'
 alias utils-pod-exec='kubectl exec -it utils -- bash'
 alias utils-deploy='task --dir ~/code/kitchen-sink/deploy up'
 alias utils-deploy-exec='kubectl -n utils exec -it deployment/utils -- bash'
-
+alias utils-tags='curl -s https://hub.docker.com/v2/repositories/bjd145/utils/tags | jq ".results[] | { name: .name, updated: .last_updated}"'
 alias uuid='pwsh -command "New-UUID"' 
 
 alias dnsfix='echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf'
